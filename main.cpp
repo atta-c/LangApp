@@ -6,27 +6,34 @@
 
 using namespace std;
 
-//global variables
-int how_much;
+//global variables for service the main program
+   int how_much, choose;
 
 int main()
 {
+      //First step of program
+   cout << "Choose how you want to read a file?" << endl << "-----------------------------------" << endl << "1 - read file line by line" << endl << "2 - read file word by word" << endl << endl << "Your choose: (1 or 2)" << endl;
+   cin >> choose;
+                                                                              //variable for chosen mode read file
 
-   Question p[how_much_quest(how_much)];                             //amount of declared classes, possible asked questions
-   int sum=0, choose;
-
-   cout << "Choose how you want to read a file?" << endl << "-----------------------------------" << endl << "1 - read file line by line" << endl << "2 - read file word by word" << endl << "Your choose: (1 or 2)" << endl;
-   cin >> choose;                                                   //variable for chosen mode read file
-
-
-if ((choose==0 ) || (choose>2))                                                      //program protect for wrong chosen number
-{
+   //Conditions for program running
+    if ((choose==0 ) || (choose>2))                                                                 //program protect for wrong chosen number
+    {
     cout<<"The chosen number is wrong!";
        exit(0);
-}
+    }
 
-   for(int i=0; i<how_much_quest(how_much); i++)                     //i = number of asking questions
+    //Function for count lines in file and change it for amount a questions (for service main loop)
+   how_much = how_much_quest(choose);                                                                 //how_much - amount of questions
 
+    //Declaration variables
+   int sum=0;
+    //Declaration class
+   Question p[how_much];                                                                           //amount of declared classes, possible asked questions
+
+
+   //Main loop
+   for(int i=0; i<how_much; i++)                                                                //i = number of asking questions
    {
       p[i].quest_nr=i+1;
       if (choose==1)    //1 - by line

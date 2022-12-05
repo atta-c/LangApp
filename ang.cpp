@@ -10,7 +10,7 @@ using namespace std;
 void Question::loadbyline()
 {
    fstream file;
-   file.open("questions.txt",ios::in);
+   file.open("questionsbyline.txt",ios::in);
 
    if(file.good()==false)
    {
@@ -80,14 +80,16 @@ void Question::check()
     {
         points=0;
         cout<<"The answer is WRONG!"<<endl<<endl;
-              cout<<"------------------------"<<endl;
+        cout<<"------------------------"<<endl;
     }
 }
 
-int how_much_quest(int x)                       //function of (program control) amount return--> x- amount lines:2 = amount of questions
+int how_much_quest(int y)                       //function of (program control) amount return--> x - amount lines:2 = amount of questions // y - chosen read file mode
 {
+
    fstream file;
-   file.open("questions.txt",ios::in);
+   int actual_nr=0, x;
+   string line, word_read;
 
    if(file.good()==false)
    {
@@ -95,13 +97,23 @@ int how_much_quest(int x)                       //function of (program control) 
       exit(0);
    }
 
-   int actual_nr=0;
-   string line;
-
-   while(getline(file,line))
+   if (y==1)
    {
-      actual_nr++;
+        file.open("questionsbyline.txt",ios::in);
+        while(getline(file,line))
+        {
+        actual_nr++;
+        }
    }
+   else if (y==2)
+   {
+        file.open("questionsbyword.txt",ios::in);
+        while(file >> word_read)
+        {
+        actual_nr++;
+        }
+   }
+
    file.close();
 
    x = (actual_nr+1)/2;

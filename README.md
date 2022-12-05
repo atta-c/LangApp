@@ -1,2 +1,3 @@
--improved code stucture
--added available switch "which way do u want to read file?", mean line-by-line or word-by-word
+-added comments
+-changed bit a main structure for variable of "how much quests are in the file"
+-changed name txt file "questions.txt" for "questionsbyline.txt"
