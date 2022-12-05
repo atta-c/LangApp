@@ -1,0 +1,2 @@
+-improved code stucture
+-added available switch "which way do u want to read file?", mean line-by-line or word-by-word
