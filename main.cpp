@@ -6,48 +6,37 @@
 
 using namespace std;
 
-
-
-int how_much_quest(int x)                       //function of amount return--> x- amount lines:2 = amount of questions
-{
-   fstream file;
-   file.open("questions.txt",ios::in);
-
-   if(file.good()==false)
-   {
-      cout<<"The file cannot be open!";
-      exit(0);
-   }
-
-   int actual_nr=0;
-   string line;
-
-   while(getline(file,line))
-   {
-      actual_nr++;
-   }
-   file.close();
-
-   x = (actual_nr+1)/2;
-
-    return x;
-}
-
-
+//global variables
+int how_much;
 
 int main()
 {
 
-    int sum=0;
+   Question p[how_much_quest(how_much)];                             //amount of declared classes, possible asked questions
+   int sum=0, choose;
 
-    Question p[how_much_quest(how_much)];                             //amount of declared class, possible asked questions
+   cout << "Choose how you want to read a file?" << endl << "-----------------------------------" << endl << "1 - read file line by line" << endl << "2 - read file word by word" << endl << "Your choose: (1 or 2)" << endl;
+   cin >> choose;                                                   //variable for chosen mode read file
 
+
+if ((choose==0 ) || (choose>2))                                                      //program protect for wrong chosen number
+{
+    cout<<"The chosen number is wrong!";
+       exit(0);
+}
 
    for(int i=0; i<how_much_quest(how_much); i++)                     //i = number of asking questions
 
    {
       p[i].quest_nr=i+1;
-      p[i].load();
+      if (choose==1)    //1 - by line
+      {
+      p[i].loadbyline();
+      }
+      if (choose==2)    //2 - by word
+      {
+      p[i].loadbyword();
+      }
       p[i].ask();
       p[i].check();
       sum+=p[i].points;

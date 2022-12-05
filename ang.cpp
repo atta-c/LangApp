@@ -7,7 +7,7 @@ using namespace std;
 
 
 
-void Question::load()
+void Question::loadbyline()
 {
    fstream file;
    file.open("questions.txt",ios::in);
@@ -28,6 +28,34 @@ void Question::load()
       if(actual_nr==nr_of_line+1) correct=line;
       actual_nr++;
    }
+
+
+   file.close();
+
+}
+
+
+void Question::loadbyword()
+{
+   fstream file;
+   file.open("questionsbyword.txt",ios::in);
+
+   if(file.good()==false)
+   {
+      cout<<"The file cannot be open!";
+      exit(0);
+   }
+
+   string word_read;
+   int nr_of_word=(quest_nr-1)*2+1;
+   int actual_nr=1;
+   while(file >> word_read)
+   {
+      if(actual_nr==nr_of_word) word=word_read;
+      if(actual_nr==nr_of_word+1) correct=word_read;
+      actual_nr++;
+   }
+
 
    file.close();
 
@@ -56,3 +84,27 @@ void Question::check()
     }
 }
 
+int how_much_quest(int x)                       //function of (program control) amount return--> x- amount lines:2 = amount of questions
+{
+   fstream file;
+   file.open("questions.txt",ios::in);
+
+   if(file.good()==false)
+   {
+      cout<<"The file cannot be open!";
+      exit(0);
+   }
+
+   int actual_nr=0;
+   string line;
+
+   while(getline(file,line))
+   {
+      actual_nr++;
+   }
+   file.close();
+
+   x = (actual_nr+1)/2;
+
+    return x;
+}
