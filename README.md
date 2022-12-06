@@ -1,3 +1,3 @@
--added comments
--changed bit a main structure for variable of "how much quests are in the file"
--changed name txt file "questions.txt" for "questionsbyline.txt"
+version 1.04
+-added function of randomized question numbers to display
+-back the functionality of display questions (in queue) one-by-one
