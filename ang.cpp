@@ -2,6 +2,7 @@
 #include "ang.h"
 #include <fstream>
 #include <cstdlib>
+#include <time.h>
 
 using namespace std;
 
@@ -100,7 +101,7 @@ int how_much_quest(int y)                       //function of (program control) 
    if (y==1)
    {
         file.open("questionsbyline.txt",ios::in);
-        while(getline(file,line))
+        while(getline(file,line))                       //function for read line by line
         {
         actual_nr++;
         }
@@ -108,7 +109,7 @@ int how_much_quest(int y)                       //function of (program control) 
    else if (y==2)
    {
         file.open("questionsbyword.txt",ios::in);
-        while(file >> word_read)
+        while(file >> word_read)                        //function for read word by word
         {
         actual_nr++;
         }
@@ -119,4 +120,23 @@ int how_much_quest(int y)                       //function of (program control) 
    x = (actual_nr+1)/2;
 
     return x;
+}
+
+int new_rdm_nb(int x, int y[])
+{
+    int how_much = x;
+    int random_number;
+    srand(time(NULL));
+    random_number = rand()%how_much+1;
+
+    for (int i=0; i<how_much; i++)
+    {
+        if(random_number==y[i])
+        {
+        random_number = rand()%how_much+1;
+        i=-1;
+        }
+    }
+
+   return random_number;
 }

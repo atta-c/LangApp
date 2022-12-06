@@ -2,7 +2,8 @@
 
 using namespace std;
 
-int how_much_quest(int);    //function of (program control) amount return--> x- amount lines:2 = amount of questions -->
+int how_much_quest(int);    //function of (program control)
+int new_rdm_nb(int, int []);         //return a sum of all quests
 
 
 class Question
